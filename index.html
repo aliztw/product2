@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALIZ - 真正薰衣草 商品詳情</title>
+    <meta name="description" content="ALIZ 真正薰衣草精油 - 溫和潔淨、平衡肌膚、凝神放鬆。來自保加利亞的高品質精油。">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background-color: #f0f0f0; /* 全頁背景色 */
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* 內容區統一規範樣式 (不影響 Header) */
+        .section-title {
+            font-size: 36px;
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            line-height: 1.25;
+            margin: 0 0 16px 0;
+            color: #3d3d3d;
+            text-align: left;
+        }
+
+        .section-text {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.9;
+            color: #4a4a4a;
+            text-align: justify;
+        }
+
+        @media (max-width: 768px){
+            .section-title{
+                font-size: 28px;
+                letter-spacing: 0.22em;
+                margin-bottom: 12px;
+            }
+            .section-text{
+                font-size: 16px;
+                line-height: 1.85;
+            }
+        }
+
+        /* 第一區塊 (Header) 左右雙欄排版 */
+        .header {
+            display: flex;
+            flex-direction: row;
+            background-color: #f0f0f0; /* 依照要求改為與全頁一致的底色 */
+        }
+
+        .header-image-box {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .header-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 右側文字區：5 行資訊對齊規則 */
+        .header-text-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 垂直置中 */
+            align-items: center;    /* 水平置中 */
+            text-align: center;     /* 文字中線對齊 */
+            padding: 40px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            color: #b0936b;
+            margin-bottom: 20px;
+        }
+        .brand-title { font-size: 24px; letter-spacing: 0.4em; font-weight: 300; }
+        .brand-divider { height: 20px; width: 1px; background: #ddd; }
+        .brand-sub { font-size: 12px; letter-spacing: 0.2em; }
+
+        /* 文字層級與間距 */
+        .hero-title {
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: #3d3d3d;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            font-weight: 700;
+            color: #3d3d3d;
+            margin-bottom: 12px;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-en-name {
+            font-size: 18px;
+            font-weight: 400;
+            color: #4a4a4a;
+            margin-bottom: 4px;
+        }
+
+        .hero-latin-name {
+            font-size: 15px;
+            font-style: italic;
+            color: #888;
+            margin-bottom: 24px;
+        }
+
+        .header-tags {
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 18px;
+            letter-spacing: 0.3em;
+            width: 100%;
+            font-weight: 300;
+            color: #4a4a4a;
+        }
+
+        /* 第一區塊下方的新增段落區塊 */
+        .hero-description-block {
+            background-color: #f0f0f0;
+            padding: 20px 60px 60px 60px;
+            text-align: justify;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            font-weight: 400;
+        }
+
+        /* 手機版樣式調整 */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column; /* 手機版上下排列 */
+            }
+            .header-text-box {
+                order: 1; /* 文字內容排在前面 */
+                padding: 40px 20px 20px 20px;
+            }
+            .header-image-box {
+                order: 2; /* 圖片排在文字標籤之下 */
+                padding: 0 20px;
+            }
+            /* 品牌 Logo 不換行 */
+            .brand-logo {
+                white-space: nowrap;
+                flex-wrap: nowrap;
+            }
+            /* 功效標語不換行 */
+            .header-tags {
+                white-space: nowrap;
+                overflow: hidden; /* 防止溢出干擾版面 */
+            }
+            .hero-description-block {
+                order: 3; /* 長段落排在圖片之後 */
+                padding: 20px 40px 40px 40px;
+            }
+            .hero-title { font-size: 36px; }
+            .hero-subtitle { font-size: 20px; }
+        }
+
+        /* --- Scent Section --- */
+        .scent-section { position: relative; background-color: #f0f0f0; background-image: none; }
+        .scent-flex { display: flex; flex-direction: column; }
+        @media (min-width: 768px) { .scent-flex { flex-direction: row; position: relative; } }
+        .scent-image { width: 100%; display: block; }
+        @media (min-width: 768px) { .scent-image { width: 65%; margin-left: auto; } }
+        .scent-box { background-color: rgba(76, 68, 101); color: #fff; padding: 40px; z-index: 10; }
+        @media (min-width: 768px) {
+            .scent-box { position: absolute; left:0px; top: 50%; transform: translateY(-50%); width: 45%; box-shadow: 0 15px 40px rgba(0,0,0,0.2); backdrop-filter: blur(5px); }
+        }
+        .scent-item { margin-bottom: 30px; }
+        .scent-item h3 { font-size: 24px; font-style: italic; opacity: 0.6; letter-spacing: 0.2em; margin-bottom: 5px; }
+        .scent-item p { font-size: 16px; font-weight: 300; }
+
+        /* --- Chemical Components Style Block --- */
+        .chemical-section { 
+            padding: 56px 40px; 
+            background-color: #ede9e8; /* 統一背景色 */
+        }
+        .chemical-section .chemical-layout { 
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .chemical-section .chemical-title {
+            /* 移除 font 相關屬性，套用 section-title */
+            text-align: left; 
+            width: 100%; /* 確保標題寬度 */
+        }
+        .chemical-section .chemical-img {
+            width: 100%;
+            max-width: 860px;
+            height: auto;
+            display: block;
+            margin: 24px auto 0px auto;
+        }
+
+        @media (max-width: 768px) { 
+            .chemical-section {
+                padding: 44px 20px;
+            }
+        }
+
+        /* --- Origin Section Style Block --- */
+        .origin-section { 
+            padding: 56px 40px; 
+            background-color: #ede9e8; 
+            position: relative; 
+        }
+        .origin-section .origin-layout { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start;
+            gap: 0;
+        }
+        .origin-section .origin-text { 
+            width: 100%; 
+            max-width: 720px; 
+            margin-left: 0;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        .origin-section .origin-text h2 { 
+            /* 移除 font 相關屬性，套用 section-title */
+        }
+        .origin-section .origin-text p { 
+            /* 移除 font 相關屬性，套用 section-text */
+        }
+        .origin-section .origin-image { 
+            width: 100%; 
+            max-width: 900px; 
+            height: auto;
+            display: block;
+            margin: 20px auto 0 auto; 
+            opacity: 0.8; 
+            align-self: center;
+        }
+        @media (max-width: 768px) { 
+            .origin-section {
+                padding: 44px 24px; 
+            }
+            .origin-section .origin-text { 
+                max-width: 100%; 
+            }
+            .origin-section .origin-image {
+                margin-top: 16px;
+            }
+        }
+
+        /* --- Extraction Section Style Block --- */
+        .extraction-section { 
+            padding: 80px 40px; 
+            background-color: #ede9e8; 
+        }
+        .extraction-title { 
+            /* 移除 font 相關屬性，套用 section-title */
+        }
+        .extraction-text { 
+            /* 移除 font 相關屬性，套用 section-text */
+            max-width: 600px; /* 保留佈局屬性 */
+        }
+
+        footer { height: 60px; background: #fff; }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- 第一區塊：左圖右文排版 (鎖定區塊) -->
+        <header class="header">
+            <div class="header-image-box">
+                <img src="https://img.shoplineapp.com/media/image_clips/6970a5b40d5dff703edaa62d/original.jpeg?1768990132=&owner_id=5caf39294d91a10001727c79" alt="Essential Oil" class="header-image">
+            </div>
+            <div class="header-text-box">
+                <div class="brand-logo">
+                    <span class="brand-title">ALIZ</span>
+                    <div class="brand-divider"></div>
+                    <span class="brand-sub">ALIZ AROMA CREATOR</span>
+                </div>
+                
+                <h2 class="hero-title">百搭聖品</h2>
+                
+                <h3 class="hero-subtitle">真正薰衣草</h3>
+                
+                <div class="hero-en-name">Lavender</div>
+                
+                <div class="hero-latin-name">Lavandula angustifolia</div>
+                
+                <div class="header-tags">
+                    溫和潔淨 | 平衡肌膚 | 凝神放鬆
+                </div>
+            </div>
+        </header>
+
+        <!-- 段落區塊 (鎖定區塊) -->
+        <div class="hero-description-block">
+            <p class="hero-description">
+                真正薰衣草精油是在芳療應用中最通用的薰衣草精油，有『精油之母』之稱，豐富的酯類結構相當溫和，氣味柔和細膩、有助提升睡眠品質。
+            </p>
+        </div>
+
+        <!-- Scent Notes (鎖定區塊) -->
+        <section class="scent-section">
+            <div class="scent-flex">
+                <div class="scent-box">
+                    <div class="scent-item">
+                        <h3>TOP</h3>
+                        <p>柔和、細膩的草本氣味<br>略有輕盈的清涼感</p>
+                    </div>
+                    <div class="scent-item">
+                        <h3>MIDDLE</h3>
+                        <p>朦朧微甜的花朵芬芳<br>宛如置身愜意的紫色花園</p>
+                    </div>
+                    <div class="scent-item">
+                        <h3>BASE</h3>
+                        <p>沈穩的松香氣息，每個細胞都逐漸放鬆<br>為一天的結尾帶來滿滿安全感</p>
+                    </div>
+                </div>
+                <img src="https://img.shoplineapp.com/media/image_clips/6971d448b0e8430ba147184c/original.jpg?1769067592=&owner_id=5caf39294d91a10001727c79" alt="Lavender Field" class="scent-image">
+            </div>
+        </section>
+
+        <!-- Chemical Components -->
+        <section class="chemical-section">
+            <div class="chemical-layout">
+                <h2 class="section-title chemical-title">主要化學成分</h2>
+                
+                <img src="https://img.shoplineapp.com/media/image_clips/6971e106d2aee5a5aa1af1b7/original.png?1769070854=&owner_id=5caf39294d91a10001727c79" alt="Chemical Chart Image" class="chemical-img">
+            </div>
+        </section>
+
+        <!-- Origin Section -->
+        <section class="origin-section">
+            <div class="origin-layout">
+                <div class="origin-text">
+                    <h2 class="section-title">人文產地</h2>
+                    <p class="section-text">
+                        真正薰衣草每年5月開花，優選產自保加利亞，
+                        生長海拔平均約800公尺以上，溫暖濕潤的氣
+                        候與肥沃的土壤，提供了真正薰衣草最適宜的
+                        生長環境。名稱是由拉丁文「Lavare」演變而
+                        來，代表「洗滌」之意。古羅馬時代，人們以薰
+                        衣草沐浴，相信能潔淨靈魂與身體。直至今日，
+                        人們依然廣泛運用在生活之中。
+                    </p>
+                </div>
+                <img src="https://img.shoplineapp.com/media/image_clips/6971e8a991b483e5aedac9d7/original.png?1769072808=&owner_id=5caf39294d91a10001727c79" alt="Map" class="origin-image">
+            </div>
+        </section>
+
+        <!-- Extraction -->
+        <section class="extraction-section">
+            <h2 class="section-title extraction-title">萃取方式</h2>
+            <p class="section-text extraction-text">
+                生長在高海拔的真正薰衣草，需經過嚴寒冬季才能開出萃油量高的花朵。正值花期時新鮮採摘，並經過蒸餾，
+                萃取出氣味溫暖怡人的高品質真正薰衣草精油。
+            </p>
+        </section>
+
+        <footer></footer>
+    </div>
+
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
